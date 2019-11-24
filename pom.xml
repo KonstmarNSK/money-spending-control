@@ -3,17 +3,22 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    <packaging>war</packaging>
 
     <groupId>com.kostya</groupId>
     <artifactId>money-spending-control</artifactId>
     <version>0.1.0-SNAPSHOT</version>
 
     <properties>
+        <maven.compiler.target>11</maven.compiler.target>
+        <maven.compiler.source>11</maven.compiler.source>
+
         <spring-version>5.2.1.RELEASE</spring-version>
         <hibernate-orm-version>5.4.9.Final</hibernate-orm-version>
         <hibernate-validator-version>6.0.17.Final</hibernate-validator-version>
         <h2-version>1.4.200</h2-version>
         <postgres-version>42.2.8</postgres-version>
+        <servlet-version>4.0.1</servlet-version>
     </properties>
 
     <dependencies>
@@ -74,6 +79,14 @@
 
         <!-- =================================================================================== -->
 
+        <!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>${servlet-version}</version>
+            <scope>provided</scope>
+        </dependency>
+
         <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-validator -->
         <dependency>
             <groupId>org.hibernate</groupId>
@@ -83,6 +96,18 @@
 
 
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.4</version>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 
 </project>
