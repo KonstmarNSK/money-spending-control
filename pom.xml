@@ -5,6 +5,14 @@
     <modelVersion>4.0.0</modelVersion>
     <packaging>war</packaging>
 
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.2.0.RELEASE</version>
+        <relativePath />
+        <!-- lookup parent from repository -->
+    </parent>
+
     <groupId>com.kostya</groupId>
     <artifactId>money-spending-control</artifactId>
     <version>0.1.0-SNAPSHOT</version>
@@ -12,8 +20,10 @@
     <properties>
         <maven.compiler.target>11</maven.compiler.target>
         <maven.compiler.source>11</maven.compiler.source>
+        <failOnMissingWebXml>false</failOnMissingWebXml>
 
         <spring-version>5.2.1.RELEASE</spring-version>
+        <spring-boot-version>2.2.0.RELEASE</spring-boot-version>
         <hibernate-orm-version>5.4.9.Final</hibernate-orm-version>
         <hibernate-validator-version>6.0.17.Final</hibernate-validator-version>
         <h2-version>1.4.200</h2-version>
@@ -23,35 +33,48 @@
 
     <dependencies>
         <!-- ============================== SPRING ============================================= -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <version>${spring-boot-version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-tomcat</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+<!--
 
-        <!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
+        &lt;!&ndash; https://mvnrepository.com/artifact/org.springframework/spring-context &ndash;&gt;
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
             <version>${spring-version}</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.springframework/spring-beans -->
+        &lt;!&ndash; https://mvnrepository.com/artifact/org.springframework/spring-beans &ndash;&gt;
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-beans</artifactId>
             <version>${spring-version}</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc -->
+        &lt;!&ndash; https://mvnrepository.com/artifact/org.springframework/spring-webmvc &ndash;&gt;
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
             <version>${spring-version}</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.springframework/spring-test -->
+        &lt;!&ndash; https://mvnrepository.com/artifact/org.springframework/spring-test &ndash;&gt;
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>
             <version>${spring-version}</version>
             <scope>test</scope>
         </dependency>
+-->
 
         <!-- ============================= DATABASE ============================================ -->
 
@@ -98,7 +121,7 @@
     </dependencies>
 
     <build>
-        <plugins>
+       <!-- <plugins>
             <plugin>
                 <artifactId>maven-war-plugin</artifactId>
                 <version>2.4</version>
@@ -106,7 +129,7 @@
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
             </plugin>
-        </plugins>
+        </plugins>-->
     </build>
 
 
