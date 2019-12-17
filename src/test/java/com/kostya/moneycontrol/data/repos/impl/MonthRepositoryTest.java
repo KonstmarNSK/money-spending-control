@@ -9,7 +9,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.ContextConfiguration;
@@ -29,28 +28,44 @@ public class MonthRepositoryTest {
     private MonthRepository monthRepository;
 
     @Test
-    public void firstTest() {
-        Money todayMoney = new Money();
-        todayMoney.setFractional(0);
-        todayMoney.setInteger(12);
+    public void simpleStoreAndLoadMonthInfo() {
+        MonthInfo monthInfo = new MonthInfo();
+
+        long monthInfoId = monthRepository.saveMonthInfo(monthInfo);
+        MonthInfo summonedMonthInfo = monthRepository.getMonthInfo(monthInfoId);
+
+        Assert.assertEquals("Wrong id!", monthInfoId, summonedMonthInfo.getId());
+    }
+
+    @Test
+    public void storeAndLoadMonthInfoWithSomeData() {
+        Money todayMoney = new Money(0, 12);
+        Money moneyAtMonthBeginning = new Money(16, 25);
+        Money moneyInMonthEnd = new Money(0, 0);
 
         DayInfo dayInfo = new DayInfo();
         dayInfo.setDate(new Date());
         dayInfo.setMoneyAtBeginning(todayMoney);
         dayInfo.setMoneyInEnd(todayMoney);
 
-        Money monthlyMoney = new Money();
-        monthlyMoney.setInteger(10);
-        monthlyMoney.setFractional(10);
-
         MonthInfo monthInfo = new MonthInfo();
-        monthInfo.setMoneyAtBeginning(monthlyMoney);
-        monthInfo.setMoneyInEnd(monthlyMoney);
+        monthInfo.setMoneyAtBeginning(moneyAtMonthBeginning);
         monthInfo.getDays().add(dayInfo);
+        monthInfo.setMoneyInEnd(moneyInMonthEnd);
 
-        long monthInfoId = monthRepository.saveMonthInfo(monthInfo);
-        MonthInfo summonedMonthInfo = monthRepository.getMonthInfo(monthInfoId);
+        long monthId = monthRepository.saveMonthInfo(monthInfo);
+        MonthInfo summonedMonth = monthRepository.getMonthInfo(monthId);
 
-        Assert.assertEquals("Not equal!", dayInfo, summonedMonthInfo.getBeginningDate());
+        Assert.assertEquals("Day is wrong!", dayInfo, summonedMonth.getBeginningDate());
+        Assert.assertEquals("Money in the beginning is wrong!",
+                moneyAtMonthBeginning,
+                summonedMonth.getMoneyAtBeginning());
+        Assert.assertEquals("Money in the end is wrong!",
+                moneyInMonthEnd,
+                summonedMonth.getMoneyInEnd());
+        Assert.assertEquals("Daily money is wrong!",
+                todayMoney,
+                summonedMonth.getDays().get(0).getMoneyAtBeginning());
+
     }
 }

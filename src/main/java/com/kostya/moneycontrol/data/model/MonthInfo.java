@@ -11,13 +11,16 @@ public class MonthInfo {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long id;
 
-    @Column(name = "MONEY_AT_BEGINNING")
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "integer", column = @Column(name = "begin_money_integer")),
+            @AttributeOverride(name = "fractional", column = @Column(name = "begin_money_fractional"))})
     private Money moneyAtBeginning;
 
     @Embedded
     @AttributeOverrides({
-            @AttributeOverride(name = "integer", column = @Column(name = "money_integer")),
-            @AttributeOverride(name = "fractional", column = @Column(name = "money_fractional"))})
+            @AttributeOverride(name = "integer", column = @Column(name = "end_money_integer")),
+            @AttributeOverride(name = "fractional", column = @Column(name = "end_money_fractional"))})
     private Money moneyInEnd;
 
 

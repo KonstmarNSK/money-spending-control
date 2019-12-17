@@ -9,6 +9,14 @@ public class Money {
     private int integer;
     private int fractional;
 
+    public Money() {
+    }
+
+    public Money(int integer, int fractional) {
+        this.integer = integer;
+        this.fractional = fractional;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
