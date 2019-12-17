@@ -7,7 +7,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages="com.kostya.moneycontrol.controllers")
+@ComponentScan(basePackages = "com.kostya.moneycontrol.controllers")
 @Profile("web")
 public class WebConfig {
 }

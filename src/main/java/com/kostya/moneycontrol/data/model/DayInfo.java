@@ -1,7 +1,5 @@
 package com.kostya.moneycontrol.data.model;
 
-import com.kostya.moneycontrol.data.DayId;
-
 import javax.persistence.*;
 import java.util.Date;
 import java.util.Objects;

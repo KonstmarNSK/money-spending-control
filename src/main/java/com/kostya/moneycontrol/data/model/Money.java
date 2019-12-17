@@ -1,7 +1,6 @@
 package com.kostya.moneycontrol.data.model;
 
 import javax.persistence.Embeddable;
-import javax.persistence.Entity;
 import java.util.Objects;
 
 @Embeddable

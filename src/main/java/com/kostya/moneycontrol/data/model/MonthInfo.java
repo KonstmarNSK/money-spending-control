@@ -32,12 +32,24 @@ public class MonthInfo {
         return id;
     }
 
+    public void setId(long id) {
+        this.id = id;
+    }
+
     public Money getMoneyAtBeginning() {
         return moneyAtBeginning;
     }
 
+    public void setMoneyAtBeginning(Money moneyAtBeginning) {
+        this.moneyAtBeginning = moneyAtBeginning;
+    }
+
     public Money getMoneyInEnd() {
         return moneyInEnd;
+    }
+
+    public void setMoneyInEnd(Money moneyInEnd) {
+        this.moneyInEnd = moneyInEnd;
     }
 
     public DayInfo getBeginningDate() {
@@ -46,18 +58,6 @@ public class MonthInfo {
 
     public List<DayInfo> getDays() {
         return days;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public void setMoneyAtBeginning(Money moneyAtBeginning) {
-        this.moneyAtBeginning = moneyAtBeginning;
-    }
-
-    public void setMoneyInEnd(Money moneyInEnd) {
-        this.moneyInEnd = moneyInEnd;
     }
 
     public void setDays(List<DayInfo> days) {

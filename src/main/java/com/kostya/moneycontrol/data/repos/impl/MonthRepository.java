@@ -1,6 +1,5 @@
 package com.kostya.moneycontrol.data.repos.impl;
 
-import com.kostya.moneycontrol.data.MonthId;
 import com.kostya.moneycontrol.data.model.MonthInfo;
 import com.kostya.moneycontrol.data.repos.IMonthRepository;
 import org.hibernate.Session;
