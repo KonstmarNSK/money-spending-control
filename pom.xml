@@ -23,7 +23,7 @@
         <failOnMissingWebXml>false</failOnMissingWebXml>
 
         <spring-version>5.2.1.RELEASE</spring-version>
-        <spring-boot-version>2.2.0.RELEASE</spring-boot-version>
+        <spring-boot-version>2.5.12</spring-boot-version>
         <hibernate-orm-version>5.4.9.Final</hibernate-orm-version>
         <hibernate-validator-version>6.0.17.Final</hibernate-validator-version>
         <h2-version>1.4.200</h2-version>
